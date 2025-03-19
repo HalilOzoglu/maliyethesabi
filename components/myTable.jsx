@@ -79,7 +79,7 @@ export default function MyTable() {
     <Tab key="tab1"  title="Geçecekten Hesaplama">
         <Input 
           variant="underlined" 
-          label="Hesaba geçmesi gereken tutar" 
+          label="Hesaba Geçmesi Gereken Tutar" 
           value={tutar}
           onChange={(e) => setTutar(e.target.value)}
         />
@@ -114,7 +114,7 @@ export default function MyTable() {
     <Tab key="tab2" title="Çekimden Hesaplama">
       <Input 
         variant="underlined" 
-        label="Çekilecek tutar" 
+        label="Karttan Çekilecek Tutar" 
         value={cekimTutar}
         onChange={(e) => setCekimTutar(e.target.value)}
       />
@@ -133,7 +133,7 @@ export default function MyTable() {
             Hesaba Geçen Tutar
           </TableColumn>
         </TableHeader>
-        <TableBody>
+        <TableBody emptyContent="Önce tutar yazmalısınız">
           {cekimHesaplamalar.length > 0 && (
             cekimHesaplamalar.map((item) => (
               <TableRow key={item.taksit}>
