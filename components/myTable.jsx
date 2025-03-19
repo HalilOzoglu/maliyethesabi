@@ -75,6 +75,26 @@ export default function MyTable() {
     setCekimHesaplamalar(yeniHesaplamalar);
   };
 
+  const handleTutarChange = (e) => {
+    const value = e.target.value.replace(/\./g, '').replace(',', '.');
+    setTutar(value);
+  };
+
+  const handleCekimTutarChange = (e) => {
+    const value = e.target.value.replace(/\./g, '').replace(',', '.');
+    setCekimTutar(value);
+  };
+
+  const formatInputValue = (value) => {
+    if (!value) return "";
+    const numValue = parseFloat(value);
+    if (isNaN(numValue)) return value;
+    return numValue.toLocaleString('tr-TR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    });
+  };
+
   // Türk para birimi formatı için yardımcı fonksiyon
   const formatTurkishCurrency = (value) => {
     return value.toLocaleString('tr-TR', {
@@ -88,8 +108,8 @@ export default function MyTable() {
         <Input 
           variant="underlined" 
           label="Hesaba Geçmesi Gereken Tutar" 
-          value={tutar}
-          onChange={(e) => setTutar(e.target.value)}
+          value={formatInputValue(tutar)}
+          onChange={handleTutarChange}
         />
         <div className="flex justify-end mt-2 mb-2">
         <Button variant="bordered" color="primary" className="" onPress={hesapla}>Hesapla</Button>
@@ -123,8 +143,8 @@ export default function MyTable() {
       <Input 
         variant="underlined" 
         label="Karttan Çekilecek Tutar" 
-        value={cekimTutar}
-        onChange={(e) => setCekimTutar(e.target.value)}
+        value={formatInputValue(cekimTutar)}
+        onChange={handleCekimTutarChange}
       />
       <div className="flex justify-end mt-2 mb-2">
         <Button variant="bordered" color="primary" className="" onPress={cekimdenHesapla}>Hesapla</Button>
