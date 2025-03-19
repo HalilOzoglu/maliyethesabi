@@ -31,7 +31,11 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Maliyet" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",

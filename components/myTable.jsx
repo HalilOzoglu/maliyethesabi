@@ -46,8 +46,8 @@ export default function MyTable() {
       
       yeniHesaplamalar.push({
         taksit,
-        taksitTutari: taksitTutari.toFixed(2),
-        cekilecekTutar: cekilecekTutar.toFixed(2)
+        taksitTutari: formatTurkishCurrency(taksitTutari),
+        cekilecekTutar: formatTurkishCurrency(cekilecekTutar)
       });
     }
     
@@ -67,12 +67,20 @@ export default function MyTable() {
       
       yeniHesaplamalar.push({
         taksit,
-        taksitTutari: taksitTutari.toFixed(2),
-        gecenTutar: gecenTutar.toFixed(2)
+        taksitTutari: formatTurkishCurrency(taksitTutari),
+        gecenTutar: formatTurkishCurrency(gecenTutar)
       });
     }
     
     setCekimHesaplamalar(yeniHesaplamalar);
+  };
+
+  // Türk para birimi formatı için yardımcı fonksiyon
+  const formatTurkishCurrency = (value) => {
+    return value.toLocaleString('tr-TR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
   };
 
   return <Tabs aria-label="Hesaplamalar">
